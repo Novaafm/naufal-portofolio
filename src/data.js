@@ -10,6 +10,7 @@ export const profile = {
   phone: "082129926729",
   email: "naufal.munarto@gmail.com",
   linkedin: "https://www.linkedin.com/in/naufal-munarto-7543b3265/",
+  portfolio: "https://naufal-portofolio-kappa.vercel.app/",
   tagline:
     "I work where the fiber meets the function — deploying MPLS networks in the field, and building fullstack applications at the keyboard.",
 };
@@ -21,14 +22,14 @@ export const networkProjects = [
     org: "PT Maktekindo",
     period: "May 2025",
     summary:
-      "Installed and configured a point-to-point MPLS link between two stations using LC duplex fiber patch cores, then routed E1 traffic toward the Access Multiplexer to enable voice/data communication over the link.",
-    tags: ["MPLS", "P2P Topology", "Fiber Optic", "E1 Interfacing"],
+      "Traced and identified point-to-point fiber optic paths between two stations (LC duplex, 4 cores per side, 4 SFPs total), then configured MPLS routing to carry E1 traffic toward the Access Multiplexer, enabling voice/data communication over the link.",
+    tags: ["MPLS", "P2P Topology", "Fiber Optic Tracing", "E1 Interfacing"],
     images: [
       "/images/MPLSMN_1.jpeg",
       "/images/MPLSMN_2.jpeg",
       "/images/MPLSMN_3.jpeg",
       "/images/MPLSMN_4.jpeg",
-    ], // add e.g. ["/images/madiun-rack-1.jpg", "/images/madiun-rack-2.jpg"]
+    ],
   },
   {
     id: "12-station-mpls",
@@ -43,7 +44,7 @@ export const networkProjects = [
       "/images/MPLSBD_1.jpg",
       "/images/MPLSBD_2.jpg",
       "/images/MPLSBD_4.jpg",
-    ], // add e.g. ["/images/12-station-1.jpg"]
+    ],
   },
 ];
 
@@ -61,8 +62,26 @@ export const softwareProjects = [
       "/images/TEKMIRA_2.png",
       "/images/TEKMIRA_3.png",
       "/images/TEKMIRA_4.jpeg",
-    ], // add e.g. ["/images/tekmira-home.png", "/images/tekmira-cart.png"]
+    ],
     link: null,
+  },
+];
+
+export const adminProjects = [
+  {
+    id: "rejeki-marino-admin",
+    title: "Warehouse Operations Documentation",
+    org: "PT Rejeki Marino KSO",
+    period: "Jul 2021 – Oct 2021",
+    summary:
+      "Handled day-to-day administrative operations for a warehouse: preparing work reports, tracking incoming and outgoing goods, and compiling weekly progress reports with S-Curve charts to monitor project timelines.",
+    tags: ["Reporting", "Inventory Tracking", "S-Curve", "Documentation"],
+    images: [
+      "/images/Admin_1.jpg",
+      "/images/Admin_2.jpg",
+      "/images/Admin_3.png",
+      "/images/Admin_4.jpg",
+    ],
   },
 ];
 
@@ -74,7 +93,7 @@ export const experience = [
     type: "software",
   },
   {
-    title: "Network Installation Engineer",
+    title: "Network Engineer",
     org: "PT Maktekindo — Madiun",
     period: "May 2025",
     type: "network",
@@ -89,7 +108,7 @@ export const experience = [
     title: "Admin",
     org: "PT Rejeki Marino KSO",
     period: "Jul 2021 – Oct 2021",
-    type: "network",
+    type: "admin",
   },
 ];
 
@@ -99,11 +118,11 @@ export const skills = {
     "ERPS",
     "ELPS",
     "E1 Interfacing",
-    "Fiber Optic Patch & Splicing",
+    "Fiber Optic Tracing & Identification",
     "Network Troubleshooting",
   ],
   software: ["React", "Express.js", "PostgreSQL", "REST API", "JavaScript"],
-  tools: ["Linux", "Microsoft Excel", "Microsoft Word"],
+  tools: ["Linux", "Microsoft Excel", "Microsoft Word", "Putty", "VS Code"],
 };
 
 export const education = {
@@ -112,6 +131,6 @@ export const education = {
   period: "2022 – Present",
   notes: [
     "Member, HIPMI (Himpunan Pengusaha Muda Indonesia)",
-    "Lab Practicum, Cyber Physical System Laboratory (2024 – 2026)",
+    "Lab Practicum Coordinator, Cyber Physical System Laboratory (2024 – 2026)",
   ],
 };

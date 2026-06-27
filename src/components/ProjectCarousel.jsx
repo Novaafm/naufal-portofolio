@@ -3,19 +3,26 @@ import { useState } from 'react'
 
 export default function ProjectCarousel({ images, alt, kind }) {
   const [index, setIndex] = useState(0)
-  const isNetwork = kind === 'network'
+
+  const accentClass =
+    kind === 'network' ? 'bg-signal-dim/10' :
+      kind === 'admin' ? 'bg-amber/10' :
+        'bg-terminal-dim/10'
+
+  const placeholderText =
+    kind === 'network' ? 'Add a site / rack photo here' :
+      kind === 'admin' ? 'Add a documentation photo here' :
+        'Add a screenshot here'
 
   if (!images || images.length === 0) {
     return (
       <div
-        className={`aspect-[16/10] rounded-md border border-dashed border-line flex flex-col items-center justify-center gap-2 ${
-          isNetwork ? 'bg-signal-dim/10' : 'bg-terminal-dim/10'
-        }`}
+        className={`aspect-[16/10] rounded-md border border-dashed border-line flex flex-col items-center justify-center gap-2 ${accentClass}`}
       >
         <span className="font-mono text-[11px] text-muted text-center px-4">
-          {isNetwork ? 'Add a site / rack photo here' : 'Add a screenshot here'}
+          {placeholderText}
         </span>
-        <span className="font-mono text-[10px] text-muted/60">/src/assets/...</span>
+        <span className="font-mono text-[10px] text-muted/60">/public/images/...</span>
       </div>
     )
   }
@@ -71,9 +78,8 @@ export default function ProjectCarousel({ images, alt, kind }) {
                   setIndex(i)
                 }}
                 aria-label={`Go to photo ${i + 1}`}
-                className={`h-1.5 rounded-full transition-all ${
-                  i === index ? 'w-4 bg-[#E8EAED]' : 'w-1.5 bg-[#E8EAED]/40'
-                }`}
+                className={`h-1.5 rounded-full transition-all ${i === index ? 'w-4 bg-[#E8EAED]' : 'w-1.5 bg-[#E8EAED]/40'
+                  }`}
               />
             ))}
           </div>

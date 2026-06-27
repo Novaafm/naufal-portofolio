@@ -18,9 +18,8 @@ function TimelineItem({ e, i, total }) {
         whileInView={{ scale: 1 }}
         viewport={{ once: true, margin: '0px 0px -40px 0px' }}
         transition={{ type: 'spring', stiffness: 300, delay: Math.min(i * 0.06, 0.18) + 0.08 }}
-        className={`absolute -left-[29px] top-1 w-3 h-3 rounded-full border-2 border-ink ${
-          e.type === 'network' ? 'bg-signal' : 'bg-terminal'
-        }`}
+        className={`absolute -left-[29px] top-1 w-3 h-3 rounded-full border-2 border-ink ${e.type === 'network' ? 'bg-signal' : e.type === 'admin' ? 'bg-amber' : 'bg-terminal'
+          }`}
       />
       <p className="font-mono text-xs text-muted mb-1">{e.period}</p>
       <h3 className="font-display text-base font-medium text-[#E8EAED]">{e.title}</h3>

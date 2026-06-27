@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { networkProjects, softwareProjects } from '../data.js'
+import { networkProjects, softwareProjects, adminProjects } from '../data.js'
 import ProjectCarousel from './ProjectCarousel.jsx'
 
 const cardVariants = {
@@ -79,6 +79,40 @@ function SoftwareCard({ project, i }) {
   )
 }
 
+function AdminCard({ project, i }) {
+  return (
+    <motion.article
+      custom={i}
+      variants={cardVariants}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, margin: '-60px' }}
+      whileHover={{ y: -6 }}
+      className="rounded-lg bg-card border border-line p-6 transition-colors hover:border-amber/40"
+    >
+      <div className="mb-5">
+        <ProjectCarousel images={project.images} alt={project.title} kind="admin" />
+      </div>
+      <div className="flex items-center justify-between mb-1.5">
+        <p className="font-mono text-xs text-amber">{project.org}</p>
+        <p className="font-mono text-xs text-muted">{project.period}</p>
+      </div>
+      <h3 className="font-display text-lg font-medium mb-2.5">{project.title}</h3>
+      <p className="text-sm text-muted leading-relaxed mb-4">{project.summary}</p>
+      <div className="flex flex-wrap gap-2">
+        {project.tags.map((t) => (
+          <span
+            key={t}
+            className="font-mono text-[11px] px-2 py-1 rounded border border-amber/40 text-amber"
+          >
+            {t}
+          </span>
+        ))}
+      </div>
+    </motion.article>
+  )
+}
+
 export default function Projects() {
   return (
     <section id="projects" className="px-6 md:px-12 lg:px-20 py-24 bg-ink">
@@ -98,7 +132,7 @@ export default function Projects() {
           transition={{ duration: 0.5 }}
           className="font-display text-3xl sm:text-4xl font-medium mb-14 max-w-xl"
         >
-          Two layers, one stack of work.
+          Three roles. One engineer.
         </motion.h2>
 
         <div className="mb-16">
@@ -115,7 +149,7 @@ export default function Projects() {
           </div>
         </div>
 
-        <div>
+        <div className="mb-16">
           <div className="flex items-center gap-3 mb-6">
             <span className="w-2 h-2 rounded-full bg-terminal" />
             <h3 className="font-mono text-sm text-[#E8EAED] uppercase tracking-wide">
@@ -125,6 +159,20 @@ export default function Projects() {
           <div className="grid sm:grid-cols-2 gap-6">
             {softwareProjects.map((p, i) => (
               <SoftwareCard key={p.id} project={p} i={i} />
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <div className="flex items-center gap-3 mb-6">
+            <span className="w-2 h-2 rounded-full bg-amber" />
+            <h3 className="font-mono text-sm text-[#E8EAED] uppercase tracking-wide">
+              Operations & Administration
+            </h3>
+          </div>
+          <div className="grid sm:grid-cols-2 gap-6">
+            {adminProjects.map((p, i) => (
+              <AdminCard key={p.id} project={p} i={i} />
             ))}
           </div>
         </div>
