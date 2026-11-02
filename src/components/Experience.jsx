@@ -50,7 +50,7 @@ export default function Experience() {
             viewport={{ once: true }}
             className="font-mono text-xs text-muted uppercase tracking-wider mb-3"
           >
-            03 — Experience
+            04 — Experience
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 16 }}

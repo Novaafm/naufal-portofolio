@@ -371,11 +371,11 @@ export default function Hero() {
           <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-medium leading-[1.08] mb-6">
             {profile.tagline.split(' — ')[0]} —
             <br />
-            <span className="text-muted">{profile.tagline.split(' — ')[1]}</span>
+            <span className="text-[#B8BECC]">{profile.tagline.split(' — ')[1]}</span>
           </h1>
-          <p className="text-muted text-base max-w-md mb-8">
-            Telecommunications Engineering student building real infrastructure
-            on both layers: physical fiber networks and the software that runs on top.
+          <p className="text-[#B8BECC] text-base max-w-md mb-8">
+            Telecommunications Engineering graduate with hands-on experience in
+            network deployment, fullstack development, and technical reporting.
           </p>
           <div className="flex flex-wrap gap-3">
             <motion.a
@@ -393,6 +393,15 @@ export default function Hero() {
               className="px-5 py-2.5 rounded-md border border-line text-[#E8EAED] font-medium text-sm"
             >
               Get in touch
+            </motion.a>
+            <motion.a
+              href={profile.cv}
+              download
+              whileHover={{ scale: 1.04, borderColor: '#4C8BF5' }}
+              whileTap={{ scale: 0.97 }}
+              className="px-5 py-2.5 rounded-md border border-line text-[#E8EAED] font-medium text-sm"
+            >
+              Download CV
             </motion.a>
           </div>
         </motion.div>

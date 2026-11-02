@@ -2,6 +2,8 @@ import { motion, useScroll } from 'framer-motion'
 import { useEffect, useState } from 'react'
 
 const links = [
+  { href: '#about', label: 'About' },
+  { href: '#final-project', label: 'Final Project' },
   { href: '#projects', label: 'Projects' },
   { href: '#experience', label: 'Experience' },
   { href: '#skills', label: 'Skills' },

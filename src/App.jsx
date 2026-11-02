@@ -1,5 +1,7 @@
 import Navbar from './components/Navbar.jsx'
 import Hero from './components/Hero.jsx'
+import About from './components/About.jsx'
+import FinalProject from './components/FinalProject.jsx'
 import Projects from './components/Projects.jsx'
 import Experience from './components/Experience.jsx'
 import Skills from './components/Skills.jsx'
@@ -10,6 +12,8 @@ export default function App() {
     <div id="top" className="bg-ink text-[#E8EAED] min-h-screen">
       <Navbar />
       <Hero />
+      <About />
+      <FinalProject />
       <Projects />
       <Experience />
       <Skills />

@@ -20,7 +20,7 @@ export default function Contact() {
           viewport={{ once: true }}
           className="font-mono text-xs text-muted uppercase tracking-wider mb-3"
         >
-          05 — Contact
+          06 — Contact
         </motion.p>
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
@@ -38,8 +38,8 @@ export default function Contact() {
           transition={{ delay: 0.15 }}
           className="text-muted max-w-md mx-auto mb-10"
         >
-          Open to internship and entry-level opportunities in network engineering,
-          telecommunications, or web development.
+          Open to internship and entry-level opportunities in engineering,
+          telecommunications, and technology.
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 16 }}
@@ -65,6 +65,15 @@ export default function Contact() {
             className="px-6 py-3 rounded-md border border-line text-[#E8EAED] font-medium text-sm"
           >
             LinkedIn ↗
+          </motion.a>
+          <motion.a
+            href={profile.cv}
+            download
+            whileHover={{ scale: 1.04, borderColor: '#4C8BF5' }}
+            whileTap={{ scale: 0.97 }}
+            className="px-6 py-3 rounded-md border border-line text-[#E8EAED] font-medium text-sm"
+          >
+            Download CV
           </motion.a>
         </motion.div>
         <p className="font-mono text-xs text-muted mt-10">{profile.phone} · {profile.location}</p>

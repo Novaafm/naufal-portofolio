@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState } from 'react'
 
-export default function ProjectCarousel({ images, alt, kind }) {
+export default function ProjectCarousel({ images, alt, kind, fit = 'cover' }) {
   const [index, setIndex] = useState(0)
 
   const accentClass =
@@ -48,7 +48,7 @@ export default function ProjectCarousel({ images, alt, kind }) {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.25 }}
-          className="absolute inset-0 w-full h-full object-cover"
+          className={`absolute inset-0 w-full h-full ${fit === 'contain' ? 'object-contain p-3' : 'object-cover'}`}
         />
       </AnimatePresence>
 

@@ -12,7 +12,52 @@ export const profile = {
   linkedin: "https://www.linkedin.com/in/naufal-munarto-7543b3265/",
   portfolio: "https://naufal-portofolio-kappa.vercel.app/",
   tagline:
-    "I work where the fiber meets the function — deploying MPLS networks in the field, and building fullstack applications at the keyboard.",
+    "Telecommunications engineer who turns technical problems into reliable solutions — across networks, software, and documentation.",
+  summary:
+    "Telecommunications Engineering graduate with hands-on experience in network deployment and configuration, as well as fullstack web development. Skilled in troubleshooting and technical problem-solving. Adaptable, detail-oriented, and eager to contribute in dynamic, solution-oriented engineering teams.",
+  photo: "/images/profile.jpg",
+  cv: "/CV_Naufal_Fawwaz_Munarto.pdf",
+};
+
+export const aboutFacts = [
+  { label: "Education", value: "Telecommunication Engineering, Telkom University (2022 – 2026)" },
+  { label: "Based in", value: "Bandung, West Java" },
+  { label: "Focus", value: "Network deployment, fullstack development, technical documentation" },
+  { label: "Status", value: "Open to internship and entry-level roles" },
+];
+
+export const finalProject = {
+  id: "uniflow",
+  title: "UniFlow — Non-Stationary IoT Water Quality Monitoring",
+  org: "Final Project · Telkom University",
+  period: "2026",
+  role: "Team of 4 · Backend Developer",
+  summary:
+    "UniFlow is an IoT system that monitors the water quality of Telkom University's open waterways in real time. An ESP32 device with four sensors streams readings over MQTT to a cloud backend, which computes a Water Quality Index, triggers early-warning alerts, and powers a Gemini-based chatbot. As the backend developer in a four-person team, I designed the layered Express.js API, the PostgreSQL storage, and the Railway deployment.",
+  metrics: [
+    { value: "0%", label: "MQTT packet loss over 1,800 packets" },
+    { value: "~4 s", label: "Data update latency in the app" },
+    { value: "86 B", label: "Average MQTT payload" },
+    { value: ">94%", label: "Average sensor accuracy" },
+  ],
+  highlights: [
+    "Layered Express.js API (routes → controllers → services → repositories) on PostgreSQL, with continuous deployment on Railway.",
+    "Unified ingestion pipeline: REST and MQTT both call a single saveSensorData(), so no logic is duplicated.",
+    "Water Quality Index engine with center-best and lower-better sub-index formulas, driving status colors and threshold alerts.",
+    "Gemini 2.5 Flash chatbot using RAG and function calling, restricted to the water-quality domain.",
+    "Operations: health-check endpoint, automatic device status via last_seen, 90-day history, and CSV export.",
+  ],
+  tags: ["Express.js", "PostgreSQL", "MQTT", "REST API", "Gemini API", "Railway", "ESP32"],
+  images: [
+    "/images/UNIFLOW_1.png",
+    "/images/UNIFLOW_2.webp",
+    "/images/UNIFLOW_3.png",
+    "/images/UNIFLOW_4.png",
+    "/images/UNIFLOW_5.png",
+    "/images/UNIFLOW_6.png",
+    "/images/UNIFLOW_7.png",
+  ],
+  links: [{ label: "Open web app", href: "https://www.uniflow.me/" }],
 };
 
 export const networkProjects = [
@@ -63,7 +108,7 @@ export const softwareProjects = [
       "/images/TEKMIRA_3.png",
       "/images/TEKMIRA_4.jpeg",
     ],
-    link: null,
+    link: "https://tekmira-frontend.vercel.app/",
   },
 ];
 
@@ -93,7 +138,7 @@ export const experience = [
     type: "software",
   },
   {
-    title: "Network Engineer",
+    title: "Network Installation Engineer",
     org: "PT Maktekindo — Madiun",
     period: "May 2025",
     type: "network",
@@ -122,13 +167,13 @@ export const skills = {
     "Network Troubleshooting",
   ],
   software: ["React", "Express.js", "PostgreSQL", "REST API", "JavaScript"],
-  tools: ["Linux", "Microsoft Excel", "Microsoft Word", "Putty", "VS Code"],
+  tools: ["Linux", "Microsoft Excel", "Microsoft Word", "CLI / Command Line", "VS Code"],
 };
 
 export const education = {
   school: "Telkom University",
   degree: "Telecommunication Engineering — Undergraduate",
-  period: "2022 – Present",
+  period: "2022 – 2026",
   notes: [
     "Member, HIPMI (Himpunan Pengusaha Muda Indonesia)",
     "Lab Practicum Coordinator, Cyber Physical System Laboratory (2024 – 2026)",

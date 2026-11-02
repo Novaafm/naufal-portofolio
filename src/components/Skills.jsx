@@ -44,7 +44,7 @@ export default function Skills() {
           viewport={{ once: true }}
           className="font-mono text-xs text-muted uppercase tracking-wider mb-3"
         >
-          04 — Skills
+          05 — Skills
         </motion.p>
         <motion.h2
           initial={{ opacity: 0, y: 16 }}

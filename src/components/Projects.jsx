@@ -75,6 +75,18 @@ function SoftwareCard({ project, i }) {
           </span>
         ))}
       </div>
+      {project.link && (
+        <motion.a
+          href={project.link}
+          target="_blank"
+          rel="noopener noreferrer"
+          whileHover={{ scale: 1.04 }}
+          whileTap={{ scale: 0.97 }}
+          className="inline-block mt-5 px-4 py-2 rounded-md border border-terminal-dim text-terminal font-mono text-xs"
+        >
+          Live demo ↗
+        </motion.a>
+      )}
     </motion.article>
   )
 }
@@ -115,7 +127,7 @@ function AdminCard({ project, i }) {
 
 export default function Projects() {
   return (
-    <section id="projects" className="px-6 md:px-12 lg:px-20 py-24 bg-ink">
+    <section id="projects" className="px-6 md:px-12 lg:px-20 py-24 bg-ink border-t border-line">
       <div className="max-w-6xl mx-auto">
         <motion.p
           initial={{ opacity: 0 }}
@@ -123,7 +135,7 @@ export default function Projects() {
           viewport={{ once: true }}
           className="font-mono text-xs text-muted uppercase tracking-wider mb-3"
         >
-          02 — Projects
+          03 — Projects
         </motion.p>
         <motion.h2
           initial={{ opacity: 0, y: 16 }}
