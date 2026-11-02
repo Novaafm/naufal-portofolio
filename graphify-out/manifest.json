@@ -1,0 +1,77 @@
+{
+  ".claude/settings.json": {
+    "mtime": 1785575850.4765575,
+    "ast_hash": "2969d567b387eb1e7cd10baa224a5e69",
+    "semantic_hash": "2969d567b387eb1e7cd10baa224a5e69"
+  },
+  "package.json": {
+    "mtime": 1782554506.0,
+    "ast_hash": "7b448511c87ba2d24e49a45d4009b3cb",
+    "semantic_hash": "7b448511c87ba2d24e49a45d4009b3cb"
+  },
+  "postcss.config.js": {
+    "mtime": 1782552928.0,
+    "ast_hash": "ef3ba2a81ba19f8ea5ddf625521e96f0",
+    "semantic_hash": "ef3ba2a81ba19f8ea5ddf625521e96f0"
+  },
+  "src/App.jsx": {
+    "mtime": 1782553865.0,
+    "ast_hash": "b4309252f1b69c6440daa24b2ac7aca4",
+    "semantic_hash": "b4309252f1b69c6440daa24b2ac7aca4"
+  },
+  "src/components/Contact.jsx": {
+    "mtime": 1782553865.0,
+    "ast_hash": "167ec12cd5ae232bbc7b3068bf333275",
+    "semantic_hash": "167ec12cd5ae232bbc7b3068bf333275"
+  },
+  "src/components/Experience.jsx": {
+    "mtime": 1782567493.0013607,
+    "ast_hash": "b42146f2aa0b49cba6392495ffb74e69",
+    "semantic_hash": "b42146f2aa0b49cba6392495ffb74e69"
+  },
+  "src/components/Hero.jsx": {
+    "mtime": 1782568739.467802,
+    "ast_hash": "ac424d09e220e692f4d30d3b8eb28d83",
+    "semantic_hash": "ac424d09e220e692f4d30d3b8eb28d83"
+  },
+  "src/components/Navbar.jsx": {
+    "mtime": 1782553865.0,
+    "ast_hash": "aa4f79b214ba6c0fb7ef725829626c22",
+    "semantic_hash": "aa4f79b214ba6c0fb7ef725829626c22"
+  },
+  "src/components/ProjectCarousel.jsx": {
+    "mtime": 1782567490.8083923,
+    "ast_hash": "cad6aaa43ad1d9b8e3a6d0282c8bc251",
+    "semantic_hash": "cad6aaa43ad1d9b8e3a6d0282c8bc251"
+  },
+  "src/components/Projects.jsx": {
+    "mtime": 1782567505.729163,
+    "ast_hash": "0ffd90941a4acf61e4143aae14d387b3",
+    "semantic_hash": "0ffd90941a4acf61e4143aae14d387b3"
+  },
+  "src/components/Skills.jsx": {
+    "mtime": 1782553865.0,
+    "ast_hash": "f96d60ccff5626f8af1ddbfd6da0dc9b",
+    "semantic_hash": "f96d60ccff5626f8af1ddbfd6da0dc9b"
+  },
+  "src/data.js": {
+    "mtime": 1782567737.0088754,
+    "ast_hash": "914a76446083547d3b9231c0b720b545",
+    "semantic_hash": "914a76446083547d3b9231c0b720b545"
+  },
+  "src/main.jsx": {
+    "mtime": 1782552972.0,
+    "ast_hash": "54a301507dcdfccf4e5565754374b5dc",
+    "semantic_hash": "54a301507dcdfccf4e5565754374b5dc"
+  },
+  "tailwind.config.js": {
+    "mtime": 1782553856.0,
+    "ast_hash": "f891b55f19a93bf815290dc4a966123f",
+    "semantic_hash": "f891b55f19a93bf815290dc4a966123f"
+  },
+  "vite.config.js": {
+    "mtime": 1782552956.0,
+    "ast_hash": "9bf09b6d97edba4eebf0fe93baaad662",
+    "semantic_hash": "9bf09b6d97edba4eebf0fe93baaad662"
+  }
+}
