@@ -1,26 +1,13 @@
 import { motion } from 'framer-motion'
 import { networkProjects, softwareProjects, adminProjects } from '../data.js'
 import ProjectCarousel from './ProjectCarousel.jsx'
+import { reveal, press } from '../motion.js'
 
-const cardVariants = {
-  hidden: { opacity: 0, y: 28 },
-  show: (i) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.55, delay: i * 0.12, ease: 'easeOut' },
-  }),
-}
-
-function NetworkCard({ project, i }) {
+function NetworkCard({ project }) {
   return (
     <motion.article
-      custom={i}
-      variants={cardVariants}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, margin: '-60px' }}
-      whileHover={{ y: -6 }}
-      className="rounded-lg bg-card border border-line p-6 transition-colors hover:border-signal-dim"
+      {...reveal}
+      className="rounded-lg bg-card border border-line p-6"
     >
       <div className="mb-5">
         <ProjectCarousel images={project.images} alt={project.title} kind="network" />
@@ -35,7 +22,7 @@ function NetworkCard({ project, i }) {
         {project.tags.map((t) => (
           <span
             key={t}
-            className="font-mono text-[11px] px-2 py-1 rounded border border-signal-dim text-signal"
+            className="font-mono text-[0.6875rem] px-2 py-1 rounded border border-signal-dim text-signal"
           >
             {t}
           </span>
@@ -45,16 +32,11 @@ function NetworkCard({ project, i }) {
   )
 }
 
-function SoftwareCard({ project, i }) {
+function SoftwareCard({ project }) {
   return (
     <motion.article
-      custom={i}
-      variants={cardVariants}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, margin: '-60px' }}
-      whileHover={{ y: -6 }}
-      className="rounded-lg bg-card border border-line p-6 transition-colors hover:border-terminal-dim"
+      {...reveal}
+      className="rounded-lg bg-card border border-line p-6"
     >
       <div className="mb-5">
         <ProjectCarousel images={project.images} alt={project.title} kind="software" />
@@ -69,7 +51,7 @@ function SoftwareCard({ project, i }) {
         {project.stack.map((t) => (
           <span
             key={t}
-            className="font-mono text-[11px] px-2 py-1 rounded border border-terminal-dim text-terminal"
+            className="font-mono text-[0.6875rem] px-2 py-1 rounded border border-terminal-dim text-terminal"
           >
             {t}
           </span>
@@ -80,8 +62,7 @@ function SoftwareCard({ project, i }) {
           href={project.link}
           target="_blank"
           rel="noopener noreferrer"
-          whileHover={{ scale: 1.04 }}
-          whileTap={{ scale: 0.97 }}
+          {...press}
           className="inline-block mt-5 px-4 py-2 rounded-md border border-terminal-dim text-terminal font-mono text-xs"
         >
           Live demo ↗
@@ -91,16 +72,11 @@ function SoftwareCard({ project, i }) {
   )
 }
 
-function AdminCard({ project, i }) {
+function AdminCard({ project }) {
   return (
     <motion.article
-      custom={i}
-      variants={cardVariants}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, margin: '-60px' }}
-      whileHover={{ y: -6 }}
-      className="rounded-lg bg-card border border-line p-6 transition-colors hover:border-amber/40"
+      {...reveal}
+      className="rounded-lg bg-card border border-line p-6"
     >
       <div className="mb-5">
         <ProjectCarousel images={project.images} alt={project.title} kind="admin" />
@@ -115,7 +91,7 @@ function AdminCard({ project, i }) {
         {project.tags.map((t) => (
           <span
             key={t}
-            className="font-mono text-[11px] px-2 py-1 rounded border border-amber/40 text-amber"
+            className="font-mono text-[0.6875rem] px-2 py-1 rounded border border-amber/40 text-amber"
           >
             {t}
           </span>
@@ -129,23 +105,14 @@ export default function Projects() {
   return (
     <section id="projects" className="px-6 md:px-12 lg:px-20 py-24 bg-ink border-t border-line">
       <div className="max-w-6xl mx-auto">
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="font-mono text-xs text-muted uppercase tracking-wider mb-3"
-        >
-          03 — Projects
-        </motion.p>
-        <motion.h2
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="font-display text-3xl sm:text-4xl font-medium mb-14 max-w-xl"
-        >
-          Three roles. One engineer.
-        </motion.h2>
+        <motion.div {...reveal}>
+          <p className="font-mono text-xs text-muted uppercase tracking-wider mb-3">
+            03 — Projects
+          </p>
+          <h2 className="font-display text-3xl sm:text-4xl leading-[1.1] tracking-tight font-medium mb-14 max-w-xl">
+            Three roles. One engineer.
+          </h2>
+        </motion.div>
 
         <div className="mb-16">
           <div className="flex items-center gap-3 mb-6">
@@ -155,8 +122,8 @@ export default function Projects() {
             </h3>
           </div>
           <div className="grid sm:grid-cols-2 gap-6">
-            {networkProjects.map((p, i) => (
-              <NetworkCard key={p.id} project={p} i={i} />
+            {networkProjects.map((p) => (
+              <NetworkCard key={p.id} project={p} />
             ))}
           </div>
         </div>
@@ -169,8 +136,8 @@ export default function Projects() {
             </h3>
           </div>
           <div className="grid sm:grid-cols-2 gap-6">
-            {softwareProjects.map((p, i) => (
-              <SoftwareCard key={p.id} project={p} i={i} />
+            {softwareProjects.map((p) => (
+              <SoftwareCard key={p.id} project={p} />
             ))}
           </div>
         </div>
@@ -183,8 +150,8 @@ export default function Projects() {
             </h3>
           </div>
           <div className="grid sm:grid-cols-2 gap-6">
-            {adminProjects.map((p, i) => (
-              <AdminCard key={p.id} project={p} i={i} />
+            {adminProjects.map((p) => (
+              <AdminCard key={p.id} project={p} />
             ))}
           </div>
         </div>

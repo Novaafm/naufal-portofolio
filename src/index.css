@@ -53,7 +53,62 @@ body {
 a:focus-visible, button:focus-visible {
   outline: 2px solid var(--signal-blue);
   outline-offset: 3px;
-  border-radius: 2px;
+}
+
+/* translucent header; the progress bar and a soft fade replace a hard divider */
+.nav-material {
+  background-color: rgba(11, 14, 20, 0.6);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  backdrop-filter: blur(20px) saturate(160%);
+}
+
+.nav-material::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  inset-inline: 0;
+  height: 1rem;
+  background: linear-gradient(rgba(11, 14, 20, 0.45), transparent);
+  pointer-events: none;
+}
+
+/* a larger floating surface reads as thicker: stronger blur, deeper shadow */
+.nav-panel {
+  background-color: rgba(22, 27, 38, 0.8);
+  -webkit-backdrop-filter: blur(28px) saturate(160%);
+  backdrop-filter: blur(28px) saturate(160%);
+  border: 1px solid var(--line);
+  box-shadow: 0 16px 40px -12px rgba(0, 0, 0, 0.6);
+}
+
+/* small controls floating over photos */
+.material-chip {
+  background-color: rgba(11, 14, 20, 0.6);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .nav-material { background-color: var(--bg-base); }
+  .nav-panel { background-color: var(--bg-card); }
+  .material-chip { background-color: var(--bg-base); }
+  .nav-material, .nav-panel, .material-chip {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
+@media (prefers-contrast: more) {
+  .nav-material { background-color: var(--bg-base); }
+  .nav-panel { background-color: var(--bg-card); }
+  .material-chip { background-color: var(--bg-base); }
+  .nav-material, .nav-panel, .material-chip {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+  .nav-panel, .material-chip { border: 1px solid #E8EAED; }
+  .border-line { border-color: #6B7385; }
+  .text-muted { color: #C4C9D4; }
 }
 
 /* subtle trace-line pattern, used behind network sections */

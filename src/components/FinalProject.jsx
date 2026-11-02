@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { finalProject } from '../data.js'
 import ProjectCarousel from './ProjectCarousel.jsx'
+import { reveal, press } from '../motion.js'
 
 export default function FinalProject() {
   const p = finalProject
@@ -8,29 +9,17 @@ export default function FinalProject() {
   return (
     <section id="final-project" className="px-6 md:px-12 lg:px-20 py-24 bg-ink border-t border-line">
       <div className="max-w-6xl mx-auto">
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="font-mono text-xs text-muted uppercase tracking-wider mb-3"
-        >
-          02 — Final Project
-        </motion.p>
-        <motion.h2
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="font-display text-3xl sm:text-4xl font-medium mb-12 max-w-xl"
-        >
-          From sensor to dashboard.
-        </motion.h2>
+        <motion.div {...reveal}>
+          <p className="font-mono text-xs text-muted uppercase tracking-wider mb-3">
+            02 — Final Project
+          </p>
+          <h2 className="font-display text-3xl sm:text-4xl leading-[1.1] tracking-tight font-medium mb-12 max-w-xl">
+            From sensor to dashboard.
+          </h2>
+        </motion.div>
 
         <motion.article
-          initial={{ opacity: 0, y: 28 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.55 }}
+          {...reveal}
           className="rounded-lg bg-card border border-line p-6 md:p-8 grid lg:grid-cols-[1.1fr_1fr] gap-8 lg:gap-10 items-start"
         >
           <ProjectCarousel images={p.images} alt={p.title} kind="network" fit="contain" />
@@ -47,7 +36,7 @@ export default function FinalProject() {
               {p.metrics.map((m) => (
                 <div key={m.label} className="rounded-md border border-line bg-surface px-4 py-3">
                   <p className="font-display text-2xl font-medium text-signal">{m.value}</p>
-                  <p className="font-mono text-[11px] text-muted leading-snug mt-1">{m.label}</p>
+                  <p className="font-mono text-[0.6875rem] text-muted leading-snug mt-1">{m.label}</p>
                 </div>
               ))}
             </div>
@@ -66,7 +55,7 @@ export default function FinalProject() {
               {p.tags.map((t) => (
                 <span
                   key={t}
-                  className="font-mono text-[11px] px-2 py-1 rounded border border-signal-dim text-signal"
+                  className="font-mono text-[0.6875rem] px-2 py-1 rounded border border-signal-dim text-signal"
                 >
                   {t}
                 </span>
@@ -80,8 +69,7 @@ export default function FinalProject() {
                   href={l.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  whileHover={{ scale: 1.04 }}
-                  whileTap={{ scale: 0.97 }}
+                  {...press}
                   className="px-5 py-2.5 rounded-md bg-signal text-ink font-medium text-sm"
                 >
                   {l.label} ↗

@@ -1,6 +1,7 @@
-import { motion, AnimatePresence, useInView, useScroll, useTransform } from 'framer-motion'
+import { motion, AnimatePresence, useInView, useReducedMotion, useScroll, useTransform } from 'framer-motion'
 import { useEffect, useRef, useState } from 'react'
 import { profile } from '../data.js'
+import { spring, snappy, press } from '../motion.js'
 
 const VIEWBOX = '0 0 220 120'
 const NODE_R = 5
@@ -34,7 +35,7 @@ function P2PDiagram() {
           key={i} cx={x} cy={y} r={NODE_R}
           fill="#0B0E14" stroke="#4C8BF5" strokeWidth="2"
           initial={{ scale: 0 }} animate={{ scale: 1 }}
-          transition={{ duration: 0.3, delay: i * 0.5, type: 'spring', stiffness: 300 }}
+          transition={{ ...snappy, delay: i * 0.5 }}
         />
       ))}
     </DiagramFrame>
@@ -62,7 +63,7 @@ function RingDiagram() {
           key={i} cx={x} cy={y} r="4"
           fill="#0B0E14" stroke="#4C8BF5" strokeWidth="2"
           initial={{ scale: 0 }} animate={{ scale: 1 }}
-          transition={{ duration: 0.3, delay: i * 0.08, type: 'spring', stiffness: 300 }}
+          transition={{ ...snappy, delay: i * 0.08 }}
         />
       ))}
     </DiagramFrame>
@@ -97,15 +98,14 @@ function StarDiagram() {
           key={`n${i}`} cx={x} cy={y} r="4"
           fill="#0B0E14" stroke="#4C8BF5" strokeWidth="2"
           initial={{ scale: 0 }} animate={{ scale: 1 }}
-          transition={{ duration: 0.3, delay: i * 0.08 + 0.3, type: 'spring', stiffness: 300 }}
+          transition={{ ...snappy, delay: i * 0.08 + 0.3 }}
         />
       ))}
       <motion.circle
         cx={hub[0]} cy={hub[1]} r="6"
         fill="#0B0E14" stroke="#4C8BF5" strokeWidth="2.5"
         initial={{ scale: 0 }} animate={{ scale: 1 }}
-        transition={{ duration: 0.3, type: 'spring', stiffness: 300 }}
-        className="pulse-dot"
+        transition={snappy}
       />
     </DiagramFrame>
   )
@@ -143,14 +143,14 @@ function TreeDiagram() {
         cx={root[0]} cy={root[1]} r="5"
         fill="#0B0E14" stroke="#4C8BF5" strokeWidth="2"
         initial={{ scale: 0 }} animate={{ scale: 1 }}
-        transition={{ type: 'spring', stiffness: 300 }}
+        transition={snappy}
       />
       {mid.map(([x, y], i) => (
         <motion.circle
           key={i} cx={x} cy={y} r="4"
           fill="#0B0E14" stroke="#4C8BF5" strokeWidth="2"
           initial={{ scale: 0 }} animate={{ scale: 1 }}
-          transition={{ delay: 0.15 + i * 0.05, type: 'spring', stiffness: 300 }}
+          transition={{ ...snappy, delay: 0.15 + i * 0.05 }}
         />
       ))}
       {leaves.map(([x, y], i) => (
@@ -158,7 +158,7 @@ function TreeDiagram() {
           key={i} cx={x} cy={y} r="3.5"
           fill="#0B0E14" stroke="#4C8BF5" strokeWidth="2"
           initial={{ scale: 0 }} animate={{ scale: 1 }}
-          transition={{ delay: 0.3 + i * 0.05, type: 'spring', stiffness: 300 }}
+          transition={{ ...snappy, delay: 0.3 + i * 0.05 }}
         />
       ))}
     </DiagramFrame>
@@ -230,15 +230,14 @@ function HybridDiagram() {
         cx={hub[0]} cy={hub[1]} r="5.5"
         fill="#0B0E14" stroke="#4C8BF5" strokeWidth="2.5"
         initial={{ scale: 0 }} animate={{ scale: 1 }}
-        transition={{ type: 'spring', stiffness: 300 }}
-        className="pulse-dot"
+        transition={snappy}
       />
       {starPoints.map(([x, y], i) => (
         <motion.circle
           key={`s${i}`} cx={x} cy={y} r="3.5"
           fill="#0B0E14" stroke="#4C8BF5" strokeWidth="2"
           initial={{ scale: 0 }} animate={{ scale: 1 }}
-          transition={{ delay: 0.1 + i * 0.08, type: 'spring', stiffness: 300 }}
+          transition={{ ...snappy, delay: 0.1 + i * 0.08 }}
         />
       ))}
       {ringPoints.map(([x, y], i) => (
@@ -246,7 +245,7 @@ function HybridDiagram() {
           key={`r${i}`} cx={x} cy={y} r="3.5"
           fill="#0B0E14" stroke="#4C8BF5" strokeWidth="2"
           initial={{ scale: 0 }} animate={{ scale: 1 }}
-          transition={{ delay: 0.5 + i * 0.06, type: 'spring', stiffness: 300 }}
+          transition={{ ...snappy, delay: 0.5 + i * 0.06 }}
         />
       ))}
     </DiagramFrame>
@@ -259,14 +258,15 @@ function NetworkTrace() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-40px' })
   const [index, setIndex] = useState(0)
+  const reduced = useReducedMotion()
 
   useEffect(() => {
-    if (!inView) return
+    if (!inView || reduced) return
     const id = setInterval(() => {
       setIndex((i) => (i + 1) % TOPOLOGIES.length)
     }, 4000)
     return () => clearInterval(id)
-  }, [inView])
+  }, [inView, reduced])
 
   const Current = TOPOLOGIES[index]
 
@@ -289,8 +289,9 @@ function NetworkTrace() {
 
 function useTypewriter(text, start, speed = 28) {
   const [out, setOut] = useState('')
+  const reduced = useReducedMotion()
   useEffect(() => {
-    if (!start) return
+    if (!start || reduced) return
     let i = 0
     const id = setInterval(() => {
       i += 1
@@ -298,8 +299,8 @@ function useTypewriter(text, start, speed = 28) {
       if (i >= text.length) clearInterval(id)
     }, speed)
     return () => clearInterval(id)
-  }, [start, text, speed])
-  return out
+  }, [start, text, speed, reduced])
+  return reduced && start ? text : out
 }
 
 function TerminalBlock() {
@@ -311,14 +312,14 @@ function TerminalBlock() {
   const showStatus = inView && line3.length === 6
 
   return (
-    <div ref={ref} className="rounded-lg bg-card border border-line font-mono text-[13px] leading-relaxed overflow-hidden">
+    <div ref={ref} className="rounded-lg bg-card border border-line font-mono text-[0.8125rem] leading-relaxed overflow-hidden">
       <div className="flex items-center gap-1.5 px-4 py-2.5 border-b border-line bg-surface">
         <span className="w-2.5 h-2.5 rounded-full bg-[#F5605A]" />
         <span className="w-2.5 h-2.5 rounded-full bg-amber" />
         <span className="w-2.5 h-2.5 rounded-full bg-terminal" />
         <span className="ml-3 text-muted text-xs">~/naufal</span>
       </div>
-      <div className="p-4 space-y-1.5 min-h-[118px]">
+      <div className="p-4 space-y-1.5 min-h-[7.375rem]">
         <p className="text-muted">
           <span className="text-terminal">$</span> {line1}
         </p>
@@ -349,6 +350,7 @@ export default function Hero() {
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start start', 'end start'] })
   const y = useTransform(scrollYProgress, [0, 1], [0, 80])
   const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0])
+  const reduced = useReducedMotion()
 
   return (
     <section
@@ -357,18 +359,18 @@ export default function Hero() {
     >
       <div className="absolute inset-0 bg-gradient-to-b from-ink via-ink/95 to-ink pointer-events-none" />
       <motion.div
-        style={{ y, opacity }}
+        style={reduced ? undefined : { y, opacity }}
         className="relative max-w-6xl mx-auto w-full grid md:grid-cols-[1.3fr_1fr] gap-12 items-center pt-24 pb-16"
       >
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={spring}
         >
           <p className="font-mono text-signal text-sm tracking-wide mb-5">
             naufal_fawwaz_munarto.init()
           </p>
-          <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-medium leading-[1.08] mb-6">
+          <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-medium leading-[1.08] tracking-tight mb-6">
             {profile.tagline.split(' — ')[0]} —
             <br />
             <span className="text-[#B8BECC]">{profile.tagline.split(' — ')[1]}</span>
@@ -380,26 +382,23 @@ export default function Hero() {
           <div className="flex flex-wrap gap-3">
             <motion.a
               href="#projects"
-              whileHover={{ scale: 1.04 }}
-              whileTap={{ scale: 0.97 }}
+              {...press}
               className="px-5 py-2.5 rounded-md bg-signal text-ink font-medium text-sm"
             >
               View projects
             </motion.a>
             <motion.a
               href="#contact"
-              whileHover={{ scale: 1.04, borderColor: '#4C8BF5' }}
-              whileTap={{ scale: 0.97 }}
-              className="px-5 py-2.5 rounded-md border border-line text-[#E8EAED] font-medium text-sm"
+              {...press}
+              className="px-5 py-2.5 rounded-md border border-line hover:border-signal transition-colors text-[#E8EAED] font-medium text-sm"
             >
               Get in touch
             </motion.a>
             <motion.a
               href={profile.cv}
               download
-              whileHover={{ scale: 1.04, borderColor: '#4C8BF5' }}
-              whileTap={{ scale: 0.97 }}
-              className="px-5 py-2.5 rounded-md border border-line text-[#E8EAED] font-medium text-sm"
+              {...press}
+              className="px-5 py-2.5 rounded-md border border-line hover:border-signal transition-colors text-[#E8EAED] font-medium text-sm"
             >
               Download CV
             </motion.a>
@@ -410,7 +409,7 @@ export default function Hero() {
           className="flex flex-col gap-5"
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.15 }}
+          transition={{ ...spring, delay: 0.1 }}
         >
           <div className="rounded-lg bg-card border border-line p-5">
             <p className="font-mono text-xs text-muted mb-3 uppercase tracking-wider">Network Topologies</p>
@@ -424,14 +423,10 @@ export default function Hero() {
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.6 }}
+        transition={{ delay: 0.6, duration: 0.4 }}
       >
-        <span className="font-mono text-[10px] text-muted uppercase tracking-widest">Scroll</span>
-        <motion.div
-          animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
-          className="w-px h-8 bg-gradient-to-b from-signal to-transparent"
-        />
+        <span className="font-mono text-[0.625rem] text-muted uppercase tracking-widest">Scroll</span>
+        <div className="w-px h-8 bg-gradient-to-b from-signal to-transparent" />
       </motion.div>
     </section>
   )
