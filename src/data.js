@@ -68,7 +68,7 @@ export const networkProjects = [
     period: "May 2025",
     summary:
       "Traced and identified point-to-point fiber optic paths between two stations (LC duplex, 4 cores per side, 4 SFPs total), then configured MPLS routing to carry E1 traffic toward the Access Multiplexer, enabling voice/data communication over the link.",
-    tags: ["MPLS", "P2P Topology", "Fiber Optic Tracing", "E1 Interfacing"],
+    tags: ["MPLS", "P2P Topology", "Fiber Optic Tracing"],
     images: [
       "/images/MPLSMN_1.jpeg",
       "/images/MPLSMN_2.jpeg",
@@ -89,6 +89,7 @@ export const networkProjects = [
       "/images/MPLSBD_1.jpg",
       "/images/MPLSBD_2.jpg",
       "/images/MPLSBD_4.jpg",
+      "/images/MPLSBD_5.png",
     ],
   },
 ];
@@ -112,6 +113,44 @@ export const softwareProjects = [
   },
 ];
 
+export const labProjects = [
+  {
+    id: "cps-lab-practicum",
+    title: "Practicum Coordination — CPS Laboratory",
+    org: "Cyber Physical System Laboratory, Telkom University",
+    period: "2024 – 2026",
+    summary:
+      "Coordinated practicum activities in a team of 32 lab assistants, and co-authored the six-module Telecommunication Networks and Traffic guide, covering network topology, 5G, VoIP QoS, and Erlang traffic analysis.",
+    tags: ["Cisco Packet Tracer", "Wireshark", "Open5GS", "Erlang B/C"],
+    images: [
+      "/images/CPS1.png",
+      "/images/CPS6.jpg",
+      "/images/CPS3.png",
+      "/images/CPS2.png",
+      "/images/CPS4.png",
+      "/images/CPS5.png",
+    ],
+  },
+];
+
+export const gameProjects = [
+  {
+    id: "bojes-studio",
+    title: "Bojes Studio",
+    org: "Roblox Map Developer",
+    period: "2025",
+    summary:
+      "Built four different maps in Roblox Studio. Bojes Studio, a cinematic night-city photo studio, has passed 100K visits, with adjustable lighting, a free camera, and a photobooth.",
+    tags: ["Roblox Studio", "Map Design"],
+    images: [
+      "/images/RBX_4.png",
+      "/images/RBX_3.png",
+      "/images/RBX_1.png",
+      "/images/RBX_2.png",
+    ],
+  },
+];
+
 export const adminProjects = [
   {
     id: "rejeki-marino-admin",
@@ -131,6 +170,12 @@ export const adminProjects = [
 ];
 
 export const experience = [
+  {
+    title: "Lab Practicum Coordinator",
+    org: "Cyber Physical System Laboratory, Telkom University",
+    period: "2024 – 2026",
+    type: "network",
+  },
   {
     title: "Fullstack Developer Intern",
     org: "Tekmira",
@@ -162,12 +207,11 @@ export const skills = {
     "MPLS (P2P & Ring)",
     "ERPS",
     "ELPS",
-    "E1 Interfacing",
     "Fiber Optic Tracing & Identification",
     "Network Troubleshooting",
   ],
   software: ["React", "Express.js", "PostgreSQL", "REST API", "JavaScript"],
-  tools: ["Linux", "Microsoft Excel", "Microsoft Word", "CLI / Command Line", "VS Code"],
+  tools: ["Linux", "Microsoft Excel", "Microsoft Word", "CLI / Command Line", "VS Code", "Roblox Studio", "Cisco Packet Tracer", "GNS3", "Wireshark"],
 };
 
 export const education = {
@@ -176,6 +220,5 @@ export const education = {
   period: "2022 – 2026",
   notes: [
     "Member, HIPMI (Himpunan Pengusaha Muda Indonesia)",
-    "Lab Practicum Coordinator, Cyber Physical System Laboratory (2024 – 2026)",
   ],
 };

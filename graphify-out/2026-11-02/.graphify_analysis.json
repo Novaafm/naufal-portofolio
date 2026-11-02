@@ -1,0 +1,179 @@
+{
+  "communities": {
+    "0": [
+      "src_components_experience",
+      "src_components_experience_experience",
+      "src_components_experience_timelineitem",
+      "src_components_skills",
+      "src_components_skills_skillgroup",
+      "src_components_skills_skills",
+      "src_data",
+      "src_data_adminprojects",
+      "src_data_education",
+      "src_data_experience",
+      "src_data_networkprojects",
+      "src_data_skills",
+      "src_data_softwareprojects"
+    ],
+    "1": [
+      "src_components_hero",
+      "src_components_hero_diagramframe",
+      "src_components_hero_hybriddiagram",
+      "src_components_hero_label_props",
+      "src_components_hero_networktrace",
+      "src_components_hero_p2pdiagram",
+      "src_components_hero_ringdiagram",
+      "src_components_hero_stardiagram",
+      "src_components_hero_terminalblock",
+      "src_components_hero_topologies",
+      "src_components_hero_treediagram",
+      "src_components_hero_usetypewriter"
+    ],
+    "2": [
+      "autoprefixer",
+      "package_devdependencies",
+      "package_devdependencies_autoprefixer",
+      "package_devdependencies_postcss",
+      "package_devdependencies_tailwindcss",
+      "package_devdependencies_vite",
+      "package_devdependencies_vitejs_plugin_react",
+      "postcss",
+      "tailwindcss",
+      "vite",
+      "vitejs_plugin_react"
+    ],
+    "3": [
+      "src_app",
+      "src_app_app",
+      "src_components_contact",
+      "src_components_contact_contact",
+      "src_components_hero_hero",
+      "src_components_navbar",
+      "src_components_navbar_links",
+      "src_components_navbar_navbar",
+      "src_data_profile",
+      "src_main"
+    ],
+    "4": [
+      "package",
+      "package_name",
+      "package_private",
+      "package_scripts",
+      "package_scripts_build",
+      "package_scripts_dev",
+      "package_scripts_preview",
+      "package_type",
+      "package_version"
+    ],
+    "5": [
+      "src_components_projectcarousel",
+      "src_components_projectcarousel_projectcarousel",
+      "src_components_projects",
+      "src_components_projects_admincard",
+      "src_components_projects_cardvariants",
+      "src_components_projects_networkcard",
+      "src_components_projects_projects",
+      "src_components_projects_softwarecard"
+    ],
+    "6": [
+      "framer_motion",
+      "package_dependencies",
+      "package_dependencies_framer_motion",
+      "package_dependencies_react",
+      "package_dependencies_react_dom",
+      "react",
+      "react_dom"
+    ],
+    "7": [
+      "postcss_config"
+    ],
+    "8": [
+      "tailwind_config"
+    ],
+    "9": [
+      "vite_config"
+    ]
+  },
+  "cohesion": {
+    "0": 0.19230769230769232,
+    "1": 0.18181818181818182,
+    "2": 0.18181818181818182,
+    "3": 0.26666666666666666,
+    "4": 0.2222222222222222,
+    "5": 0.2857142857142857,
+    "6": 0.2857142857142857,
+    "7": 1.0,
+    "8": 1.0,
+    "9": 1.0
+  },
+  "gods": [
+    {
+      "id": "package_scripts",
+      "label": "scripts",
+      "degree": 4
+    },
+    {
+      "id": "src_data_profile",
+      "label": "profile",
+      "degree": 3
+    },
+    {
+      "id": "package_devdependencies_vitejs_plugin_react",
+      "label": "@vitejs/plugin-react",
+      "degree": 2
+    },
+    {
+      "id": "package_devdependencies_autoprefixer",
+      "label": "autoprefixer",
+      "degree": 2
+    },
+    {
+      "id": "package_devdependencies_postcss",
+      "label": "postcss",
+      "degree": 2
+    },
+    {
+      "id": "package_devdependencies_tailwindcss",
+      "label": "tailwindcss",
+      "degree": 2
+    },
+    {
+      "id": "package_devdependencies_vite",
+      "label": "vite",
+      "degree": 2
+    },
+    {
+      "id": "package_dependencies_framer_motion",
+      "label": "framer-motion",
+      "degree": 2
+    },
+    {
+      "id": "package_dependencies_react",
+      "label": "react",
+      "degree": 2
+    },
+    {
+      "id": "package_dependencies_react_dom",
+      "label": "react-dom",
+      "degree": 2
+    }
+  ],
+  "surprises": [],
+  "questions": [
+    {
+      "type": "bridge_node",
+      "question": "Why does `devDependencies` connect `Community 2` to `Community 4`?",
+      "why": "High betweenness centrality (0.078) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `dependencies` connect `Community 6` to `Community 4`?",
+      "why": "High betweenness centrality (0.052) - this node is a cross-community bridge."
+    },
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `name`, `private`, `version` to the rest of the system?",
+      "why": "19 weakly-connected nodes found - possible documentation gaps or missing edges."
+    }
+  ]
+}

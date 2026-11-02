@@ -1,12 +1,15 @@
 import { motion } from 'framer-motion'
-import { networkProjects, softwareProjects, adminProjects } from '../data.js'
+import { networkProjects, softwareProjects, labProjects, gameProjects, adminProjects } from '../data.js'
 import ProjectCarousel from './ProjectCarousel.jsx'
 import { reveal } from '../motion.js'
 import { MoreLink } from '../ui.jsx'
 
+// Newest first
 const projects = [
-  ...networkProjects.map((p) => ({ ...p, area: 'Network Infrastructure', kind: 'network' })),
+  ...labProjects.map((p) => ({ ...p, area: 'Teaching & Lab Coordination', kind: 'network' })),
+  ...gameProjects.map((p) => ({ ...p, area: 'Game Development', kind: 'software' })),
   ...softwareProjects.map((p) => ({ ...p, area: 'Software Development', kind: 'software' })),
+  ...networkProjects.map((p) => ({ ...p, area: 'Network Infrastructure', kind: 'network' })),
   ...adminProjects.map((p) => ({ ...p, area: 'Operations & Administration', kind: 'admin' })),
 ]
 
@@ -43,7 +46,7 @@ export default function Projects() {
     <section id="projects" className="px-6 py-28 md:py-40 bg-snow text-ink">
       <div className="max-w-6xl mx-auto">
         <motion.div {...reveal} className="text-center mb-20 md:mb-28">
-          <h2 className="type-headline">Three roles. One engineer.</h2>
+          <h2 className="type-headline">Many roles. One engineer.</h2>
         </motion.div>
         <div className="space-y-24 md:space-y-36">
           {projects.map((p, i) => (

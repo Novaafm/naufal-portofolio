@@ -87,16 +87,29 @@ export default function ProjectCarousel({ images, alt, kind, fit = 'cover' }) {
         className={`absolute inset-y-0 left-0 flex w-full ${canDrag ? 'cursor-grab active:cursor-grabbing' : ''}`}
       >
         {images.map((src, i) => (
-          <img
-            key={src}
-            src={src}
-            alt={`${alt} — photo ${i + 1} of ${count}`}
-            aria-hidden={i !== index}
-            draggable={false}
-            loading="lazy"
-            decoding="async"
-            className={`w-full h-full shrink-0 select-none ${fit === 'contain' ? 'object-contain p-3' : 'object-cover'}`}
-          />
+          <div key={src} className="relative w-full h-full shrink-0 overflow-hidden">
+            {/* A blurred copy fills the space around images shown whole */}
+            {fit === 'contain' && (
+              <img
+                src={src}
+                alt=""
+                aria-hidden="true"
+                draggable={false}
+                loading="lazy"
+                decoding="async"
+                className="absolute inset-0 w-full h-full object-cover scale-110 blur-2xl opacity-60 select-none"
+              />
+            )}
+            <img
+              src={src}
+              alt={`${alt} — photo ${i + 1} of ${count}`}
+              aria-hidden={i !== index}
+              draggable={false}
+              loading="lazy"
+              decoding="async"
+              className={`relative w-full h-full select-none ${fit === 'contain' ? 'object-contain p-3' : 'object-cover'}`}
+            />
+          </div>
         ))}
       </motion.div>
 
