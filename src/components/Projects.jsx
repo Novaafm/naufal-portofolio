@@ -1,101 +1,38 @@
 import { motion } from 'framer-motion'
 import { networkProjects, softwareProjects, adminProjects } from '../data.js'
 import ProjectCarousel from './ProjectCarousel.jsx'
-import { reveal, press } from '../motion.js'
+import { reveal } from '../motion.js'
+import { MoreLink } from '../ui.jsx'
 
-function NetworkCard({ project }) {
+const projects = [
+  ...networkProjects.map((p) => ({ ...p, area: 'Network Infrastructure', kind: 'network' })),
+  ...softwareProjects.map((p) => ({ ...p, area: 'Software Development', kind: 'software' })),
+  ...adminProjects.map((p) => ({ ...p, area: 'Operations & Administration', kind: 'admin' })),
+]
+
+function ProjectFeature({ project, flipped }) {
+  const labels = project.tags || project.stack
   return (
     <motion.article
       {...reveal}
-      className="rounded-lg bg-card border border-line p-6"
+      className="grid lg:grid-cols-[1.5fr_1fr] gap-8 lg:gap-16 items-center"
     >
-      <div className="mb-5">
-        <ProjectCarousel images={project.images} alt={project.title} kind="network" />
+      <div className={flipped ? 'lg:order-2' : ''}>
+        <ProjectCarousel images={project.images} alt={project.title} kind={project.kind} />
       </div>
-      <div className="flex items-center justify-between mb-1.5">
-        <p className="font-mono text-xs text-signal">{project.org}</p>
-        <p className="font-mono text-xs text-muted">{project.period}</p>
-      </div>
-      <h3 className="font-display text-lg font-medium mb-2.5">{project.title}</h3>
-      <p className="text-sm text-muted leading-relaxed mb-4">{project.summary}</p>
-      <div className="flex flex-wrap gap-2">
-        {project.tags.map((t) => (
-          <span
-            key={t}
-            className="font-mono text-[0.6875rem] px-2 py-1 rounded border border-signal-dim text-signal"
-          >
-            {t}
-          </span>
-        ))}
-      </div>
-    </motion.article>
-  )
-}
-
-function SoftwareCard({ project }) {
-  return (
-    <motion.article
-      {...reveal}
-      className="rounded-lg bg-card border border-line p-6"
-    >
-      <div className="mb-5">
-        <ProjectCarousel images={project.images} alt={project.title} kind="software" />
-      </div>
-      <div className="flex items-center justify-between mb-1.5">
-        <p className="font-mono text-xs text-terminal">{project.org}</p>
-        <p className="font-mono text-xs text-muted">{project.period}</p>
-      </div>
-      <h3 className="font-display text-lg font-medium mb-2.5">{project.title}</h3>
-      <p className="text-sm text-muted leading-relaxed mb-4">{project.summary}</p>
-      <div className="flex flex-wrap gap-2">
-        {project.stack.map((t) => (
-          <span
-            key={t}
-            className="font-mono text-[0.6875rem] px-2 py-1 rounded border border-terminal-dim text-terminal"
-          >
-            {t}
-          </span>
-        ))}
-      </div>
-      {project.link && (
-        <motion.a
-          href={project.link}
-          target="_blank"
-          rel="noopener noreferrer"
-          {...press}
-          className="inline-block mt-5 px-4 py-2 rounded-md border border-terminal-dim text-terminal font-mono text-xs"
-        >
-          Live demo ↗
-        </motion.a>
-      )}
-    </motion.article>
-  )
-}
-
-function AdminCard({ project }) {
-  return (
-    <motion.article
-      {...reveal}
-      className="rounded-lg bg-card border border-line p-6"
-    >
-      <div className="mb-5">
-        <ProjectCarousel images={project.images} alt={project.title} kind="admin" />
-      </div>
-      <div className="flex items-center justify-between mb-1.5">
-        <p className="font-mono text-xs text-amber">{project.org}</p>
-        <p className="font-mono text-xs text-muted">{project.period}</p>
-      </div>
-      <h3 className="font-display text-lg font-medium mb-2.5">{project.title}</h3>
-      <p className="text-sm text-muted leading-relaxed mb-4">{project.summary}</p>
-      <div className="flex flex-wrap gap-2">
-        {project.tags.map((t) => (
-          <span
-            key={t}
-            className="font-mono text-[0.6875rem] px-2 py-1 rounded border border-amber/40 text-amber"
-          >
-            {t}
-          </span>
-        ))}
+      <div className={flipped ? 'lg:order-1' : ''}>
+        <p className="text-base font-semibold text-accent-strong mb-3">{project.area}</p>
+        <h3 className="text-3xl md:text-4xl font-semibold tracking-tight leading-tight mb-4">{project.title}</h3>
+        <p className="text-sm text-subtle mb-5">{project.org} · {project.period}</p>
+        <p className="text-lg leading-snug text-subtle mb-5">{project.summary}</p>
+        <p className="text-sm text-subtle">{labels.join(' · ')}</p>
+        {project.link && (
+          <div className="mt-6">
+            <MoreLink tone="light" href={project.link} target="_blank" rel="noopener noreferrer">
+              Live demo
+            </MoreLink>
+          </div>
+        )}
       </div>
     </motion.article>
   )
@@ -103,57 +40,15 @@ function AdminCard({ project }) {
 
 export default function Projects() {
   return (
-    <section id="projects" className="px-6 md:px-12 lg:px-20 py-24 bg-ink border-t border-line">
+    <section id="projects" className="px-6 py-28 md:py-40 bg-snow text-ink">
       <div className="max-w-6xl mx-auto">
-        <motion.div {...reveal}>
-          <p className="font-mono text-xs text-muted uppercase tracking-wider mb-3">
-            03 — Projects
-          </p>
-          <h2 className="font-display text-3xl sm:text-4xl leading-[1.1] tracking-tight font-medium mb-14 max-w-xl">
-            Three roles. One engineer.
-          </h2>
+        <motion.div {...reveal} className="text-center mb-20 md:mb-28">
+          <h2 className="type-headline">Three roles. One engineer.</h2>
         </motion.div>
-
-        <div className="mb-16">
-          <div className="flex items-center gap-3 mb-6">
-            <span className="w-2 h-2 rounded-full bg-signal" />
-            <h3 className="font-mono text-sm text-[#E8EAED] uppercase tracking-wide">
-              Network Infrastructure
-            </h3>
-          </div>
-          <div className="grid sm:grid-cols-2 gap-6">
-            {networkProjects.map((p) => (
-              <NetworkCard key={p.id} project={p} />
-            ))}
-          </div>
-        </div>
-
-        <div className="mb-16">
-          <div className="flex items-center gap-3 mb-6">
-            <span className="w-2 h-2 rounded-full bg-terminal" />
-            <h3 className="font-mono text-sm text-[#E8EAED] uppercase tracking-wide">
-              Software Development
-            </h3>
-          </div>
-          <div className="grid sm:grid-cols-2 gap-6">
-            {softwareProjects.map((p) => (
-              <SoftwareCard key={p.id} project={p} />
-            ))}
-          </div>
-        </div>
-
-        <div>
-          <div className="flex items-center gap-3 mb-6">
-            <span className="w-2 h-2 rounded-full bg-amber" />
-            <h3 className="font-mono text-sm text-[#E8EAED] uppercase tracking-wide">
-              Operations & Administration
-            </h3>
-          </div>
-          <div className="grid sm:grid-cols-2 gap-6">
-            {adminProjects.map((p) => (
-              <AdminCard key={p.id} project={p} />
-            ))}
-          </div>
+        <div className="space-y-24 md:space-y-36">
+          {projects.map((p, i) => (
+            <ProjectFeature key={p.id} project={p} flipped={i % 2 === 1} />
+          ))}
         </div>
       </div>
     </section>

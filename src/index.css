@@ -2,37 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --bg-base: #0B0E14;
-  --bg-surface: #12161F;
-  --bg-card: #161B26;
-  --text-primary: #E8EAED;
-  --text-muted: #8B92A3;
-  --line: #232938;
-  --signal-blue: #4C8BF5;
-  --signal-blue-dim: #2A4571;
-  --terminal-green: #34D399;
-  --terminal-green-dim: #1B5E48;
-  --amber: #F5A623;
-}
-
 html {
   scroll-behavior: smooth;
+  background-color: #000;
 }
 
 body {
-  background-color: var(--bg-base);
-  color: var(--text-primary);
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Inter', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
-.font-display {
-  font-family: 'Space Grotesk', sans-serif;
+/* tracking and leading tighten as type grows */
+.type-display {
+  font-size: clamp(1.75rem, 9.3vw, 5rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  font-weight: 600;
+  text-wrap: balance;
 }
 
-.font-mono {
-  font-family: 'JetBrains Mono', monospace;
+.type-headline {
+  font-size: clamp(2.25rem, 5vw, 4rem);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  font-weight: 600;
+  text-wrap: balance;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -45,53 +39,42 @@ body {
 }
 
 ::selection {
-  background-color: var(--signal-blue-dim);
-  color: var(--text-primary);
+  background-color: #0071e3;
+  color: #fff;
 }
 
 /* visible keyboard focus */
 a:focus-visible, button:focus-visible {
-  outline: 2px solid var(--signal-blue);
+  outline: 2px solid #0071e3;
   outline-offset: 3px;
 }
 
-/* translucent header; the progress bar and a soft fade replace a hard divider */
+/* translucent global header, dark over both black and light sections */
 .nav-material {
-  background-color: rgba(11, 14, 20, 0.6);
-  -webkit-backdrop-filter: blur(20px) saturate(160%);
-  backdrop-filter: blur(20px) saturate(160%);
-}
-
-.nav-material::after {
-  content: '';
-  position: absolute;
-  top: 100%;
-  inset-inline: 0;
-  height: 1rem;
-  background: linear-gradient(rgba(11, 14, 20, 0.45), transparent);
-  pointer-events: none;
+  background-color: rgba(22, 22, 23, 0.8);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  backdrop-filter: blur(20px) saturate(180%);
 }
 
 /* a larger floating surface reads as thicker: stronger blur, deeper shadow */
 .nav-panel {
-  background-color: rgba(22, 27, 38, 0.8);
-  -webkit-backdrop-filter: blur(28px) saturate(160%);
-  backdrop-filter: blur(28px) saturate(160%);
-  border: 1px solid var(--line);
+  background-color: rgba(29, 29, 31, 0.8);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  backdrop-filter: blur(28px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 0 16px 40px -12px rgba(0, 0, 0, 0.6);
 }
 
 /* small controls floating over photos */
 .material-chip {
-  background-color: rgba(11, 14, 20, 0.6);
+  background-color: rgba(29, 29, 31, 0.6);
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
 }
 
 @media (prefers-reduced-transparency: reduce) {
-  .nav-material { background-color: var(--bg-base); }
-  .nav-panel { background-color: var(--bg-card); }
-  .material-chip { background-color: var(--bg-base); }
+  .nav-material { background-color: #161617; }
+  .nav-panel, .material-chip { background-color: #1d1d1f; }
   .nav-material, .nav-panel, .material-chip {
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
@@ -99,57 +82,13 @@ a:focus-visible, button:focus-visible {
 }
 
 @media (prefers-contrast: more) {
-  .nav-material { background-color: var(--bg-base); }
-  .nav-panel { background-color: var(--bg-card); }
-  .material-chip { background-color: var(--bg-base); }
+  .nav-material { background-color: #000; }
+  .nav-panel, .material-chip { background-color: #000; }
   .nav-material, .nav-panel, .material-chip {
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
   }
-  .nav-panel, .material-chip { border: 1px solid #E8EAED; }
-  .border-line { border-color: #6B7385; }
-  .text-muted { color: #C4C9D4; }
-}
-
-/* subtle trace-line pattern, used behind network sections */
-.trace-grid {
-  background-image:
-    linear-gradient(var(--line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--line) 1px, transparent 1px);
-  background-size: 48px 48px;
-}
-
-.glow-blue {
-  box-shadow: 0 0 0 1px var(--signal-blue-dim), 0 0 40px -10px var(--signal-blue);
-}
-
-.glow-green {
-  box-shadow: 0 0 0 1px var(--terminal-green-dim), 0 0 40px -10px var(--terminal-green);
-}
-
-@keyframes pulse-dot {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.3; }
-}
-
-.pulse-dot {
-  animation: pulse-dot 2s ease-in-out infinite;
-}
-
-@keyframes dash-flow {
-  to { stroke-dashoffset: -40; }
-}
-
-.dash-flow {
-  stroke-dasharray: 6 6;
-  animation: dash-flow 1.5s linear infinite;
-}
-
-@keyframes fade-up {
-  from { opacity: 0; transform: translateY(16px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-.fade-up {
-  animation: fade-up 0.6s ease-out both;
+  .nav-panel, .material-chip { border: 1px solid #fff; }
+  .text-graphite { color: #d1d1d6; }
+  .text-subtle { color: #3a3a3c; }
 }

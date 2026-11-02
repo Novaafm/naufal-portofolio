@@ -53,18 +53,18 @@ vercel
 - React 18
 - Vite
 - Tailwind CSS
-- Framer Motion (scroll-driven animations, stagger reveals, parallax)
-- Fonts: Space Grotesk (display), Inter (body), JetBrains Mono (code/labels)
+- Framer Motion (springs, scroll reveals, carousel drag)
+- Fonts: the system font on Apple devices, Inter elsewhere
 
 ## About the animations
 
-- Hero: the network diagram draws itself in (line-by-line, then nodes pop in),
-  and the terminal block "types" its text live the first time it scrolls into view.
-- Navbar: a thin progress bar tracks how far down the page you've scrolled.
-- Projects: cards slide up with a staggered delay as they enter the viewport.
-- Experience: the timeline's vertical line fills in as you scroll through it.
-- Skills: badges pop in one by one per group.
-- Contact: a subtle parallax drift on scroll.
+- Hero: no entrance animation, so the headline is visible immediately.
+- Sections: each block of content fades and rises once as it enters the viewport.
+- Carousels: photos follow your finger or mouse, and a flick carries its momentum
+  into the next photo.
+- Buttons and links: a quick press response on pointer-down.
+
+Shared spring values live in `src/motion.js`.
 
 All animations respect `prefers-reduced-motion` and only play once per element
 (they won't replay every time you scroll past them again).

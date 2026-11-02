@@ -12,7 +12,7 @@ import { spring } from './motion.js'
 export default function App() {
   return (
     <MotionConfig reducedMotion="user" transition={spring}>
-      <div id="top" className="bg-ink text-[#E8EAED] min-h-screen">
+      <div id="top" className="bg-black text-snow min-h-screen">
         <Navbar />
         <Hero />
         <About />
@@ -21,7 +21,7 @@ export default function App() {
         <Experience />
         <Skills />
         <Contact />
-        <footer className="px-6 py-8 text-center font-mono text-[0.6875rem] text-muted border-t border-line">
+        <footer className="px-6 py-8 text-center text-xs text-graphite border-t border-white/10">
           Built by Naufal Fawwaz Munarto · {new Date().getFullYear()}
         </footer>
       </div>

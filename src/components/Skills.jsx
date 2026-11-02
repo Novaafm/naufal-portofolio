@@ -2,45 +2,30 @@ import { motion } from 'framer-motion'
 import { skills } from '../data.js'
 import { reveal } from '../motion.js'
 
-function SkillGroup({ title, items, accent }) {
-  const accentClasses = {
-    signal: 'border-signal-dim text-signal',
-    terminal: 'border-terminal-dim text-terminal',
-    muted: 'border-line text-muted',
-  }
+function SkillGroup({ title, items }) {
   return (
     <div>
-      <h3 className="font-mono text-xs text-muted uppercase tracking-wider mb-4">{title}</h3>
-      <div className="flex flex-wrap gap-2.5">
+      <h3 className="text-sm text-subtle pb-4 border-b border-black/10 mb-4">{title}</h3>
+      <ul className="space-y-2.5">
         {items.map((s) => (
-          <span
-            key={s}
-            className={`font-mono text-xs px-3 py-1.5 rounded-md border ${accentClasses[accent]}`}
-          >
-            {s}
-          </span>
+          <li key={s} className="text-lg font-medium leading-snug">{s}</li>
         ))}
-      </div>
+      </ul>
     </div>
   )
 }
 
 export default function Skills() {
   return (
-    <section id="skills" className="px-6 md:px-12 lg:px-20 py-24 bg-ink">
-      <div className="max-w-6xl mx-auto">
-        <motion.div {...reveal}>
-          <p className="font-mono text-xs text-muted uppercase tracking-wider mb-3">
-            05 — Skills
-          </p>
-          <h2 className="font-display text-3xl sm:text-4xl leading-[1.1] tracking-tight font-medium mb-12 max-w-xl">
-            The toolkit behind both layers.
-          </h2>
-        </motion.div>
-        <motion.div {...reveal} className="grid sm:grid-cols-3 gap-10">
-          <SkillGroup title="Network & Telecom" items={skills.network} accent="signal" />
-          <SkillGroup title="Software Development" items={skills.software} accent="terminal" />
-          <SkillGroup title="Tools" items={skills.tools} accent="muted" />
+    <section id="skills" className="px-6 py-28 md:py-40 bg-snow text-ink">
+      <div className="max-w-5xl mx-auto">
+        <motion.h2 {...reveal} className="type-headline mb-16 max-w-3xl">
+          The toolkit behind both layers.
+        </motion.h2>
+        <motion.div {...reveal} className="grid sm:grid-cols-3 gap-12">
+          <SkillGroup title="Network & Telecom" items={skills.network} />
+          <SkillGroup title="Software Development" items={skills.software} />
+          <SkillGroup title="Tools" items={skills.tools} />
         </motion.div>
       </div>
     </section>

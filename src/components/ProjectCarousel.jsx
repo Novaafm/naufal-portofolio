@@ -8,7 +8,7 @@ function project(velocity, decelerationRate = 0.99) {
 }
 
 const CONTROL_CLASS =
-  'material-chip absolute top-1/2 -translate-y-1/2 w-8 h-8 rounded-full text-[#E8EAED] flex items-center justify-center transition-opacity before:absolute before:-inset-1.5 [@media(hover:hover)]:opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 disabled:!opacity-0 disabled:pointer-events-none active:scale-95'
+  'material-chip absolute top-1/2 -translate-y-1/2 w-9 h-9 rounded-full text-white text-xl flex items-center justify-center transition-opacity before:absolute before:-inset-1.5 [@media(hover:hover)]:opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 disabled:!opacity-0 disabled:pointer-events-none active:scale-95'
 
 export default function ProjectCarousel({ images, alt, kind, fit = 'cover' }) {
   const [index, setIndex] = useState(0)
@@ -34,11 +34,6 @@ export default function ProjectCarousel({ images, alt, kind, fit = 'cover' }) {
     return () => observer.disconnect()
   }, [x])
 
-  const accentClass =
-    kind === 'network' ? 'bg-signal-dim/10' :
-      kind === 'admin' ? 'bg-amber/10' :
-        'bg-terminal-dim/10'
-
   const placeholderText =
     kind === 'network' ? 'Add a site / rack photo here' :
       kind === 'admin' ? 'Add a documentation photo here' :
@@ -46,13 +41,11 @@ export default function ProjectCarousel({ images, alt, kind, fit = 'cover' }) {
 
   if (count === 0) {
     return (
-      <div
-        className={`aspect-[16/10] rounded-md border border-dashed border-line flex flex-col items-center justify-center gap-2 ${accentClass}`}
-      >
-        <span className="font-mono text-[0.6875rem] text-muted text-center px-4">
+      <div className="aspect-[16/10] rounded-3xl border border-dashed border-graphite/40 bg-graphite/10 flex flex-col items-center justify-center gap-2">
+        <span className="text-sm text-graphite text-center px-4">
           {placeholderText}
         </span>
-        <span className="font-mono text-[0.625rem] text-muted/60">/public/images/...</span>
+        <span className="text-xs text-graphite/60">/public/images/...</span>
       </div>
     )
   }
@@ -82,7 +75,7 @@ export default function ProjectCarousel({ images, alt, kind, fit = 'cover' }) {
       role="group"
       aria-roledescription="carousel"
       aria-label={alt}
-      className="relative aspect-[16/10] rounded-md overflow-hidden bg-card group"
+      className="relative aspect-[16/10] rounded-3xl overflow-hidden bg-ink group"
     >
       <motion.div
         drag={canDrag ? 'x' : false}
@@ -128,7 +121,7 @@ export default function ProjectCarousel({ images, alt, kind, fit = 'cover' }) {
             ›
           </button>
 
-          <div className="absolute bottom-0 inset-x-0 flex items-center justify-center">
+          <div className="material-chip absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center px-2 rounded-full">
             {images.map((_, i) => (
               <button
                 key={i}
@@ -139,13 +132,13 @@ export default function ProjectCarousel({ images, alt, kind, fit = 'cover' }) {
                 className="px-[3px] py-2.5"
               >
                 <span
-                  className={`block h-1.5 rounded-full transition-[width,background-color] ${i === index ? 'w-4 bg-[#E8EAED]' : 'w-1.5 bg-[#E8EAED]/40'}`}
+                  className={`block h-1.5 rounded-full transition-[width,background-color] ${i === index ? 'w-4 bg-white' : 'w-1.5 bg-white/40'}`}
                 />
               </button>
             ))}
           </div>
 
-          <span className="material-chip absolute top-2.5 right-2.5 font-mono text-[0.625rem] text-[#E8EAED] px-1.5 py-0.5 rounded pointer-events-none">
+          <span className="material-chip absolute top-3 right-3 text-xs text-white px-2 py-0.5 rounded-full pointer-events-none">
             {index + 1}/{count}
           </span>
         </>

@@ -1,51 +1,25 @@
 import { motion } from 'framer-motion'
 import { profile } from '../data.js'
-import { reveal, press } from '../motion.js'
+import { reveal } from '../motion.js'
+import { PillLink, MoreLink } from '../ui.jsx'
 
 export default function Contact() {
   return (
-    <section
-      id="contact"
-      className="px-6 md:px-12 lg:px-20 py-28 bg-surface border-t border-line overflow-hidden"
-    >
-      <motion.div {...reveal} className="max-w-6xl mx-auto text-center">
-        <p className="font-mono text-xs text-muted uppercase tracking-wider mb-3">
-          06 — Contact
-        </p>
-        <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl leading-[1.1] tracking-tight font-medium mb-6 max-w-2xl mx-auto">
+    <section id="contact" className="px-6 py-32 md:py-48 bg-black text-snow">
+      <motion.div {...reveal} className="max-w-4xl mx-auto text-center">
+        <h2 className="type-display mb-6">
           Let&#x2019;s connect the dots.
         </h2>
-        <p className="text-muted max-w-md mx-auto mb-10">
+        <p className="text-xl md:text-2xl text-graphite max-w-2xl mx-auto mb-10">
           Open to internship and entry-level opportunities in engineering,
           telecommunications, and technology.
         </p>
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <motion.a
-            href={`mailto:${profile.email}`}
-            {...press}
-            className="px-6 py-3 rounded-md bg-signal text-ink font-medium text-sm"
-          >
-            {profile.email}
-          </motion.a>
-          <motion.a
-            href={profile.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            {...press}
-            className="px-6 py-3 rounded-md border border-line hover:border-signal transition-colors text-[#E8EAED] font-medium text-sm"
-          >
-            LinkedIn ↗
-          </motion.a>
-          <motion.a
-            href={profile.cv}
-            download
-            {...press}
-            className="px-6 py-3 rounded-md border border-line hover:border-signal transition-colors text-[#E8EAED] font-medium text-sm"
-          >
-            Download CV
-          </motion.a>
+        <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
+          <PillLink href={`mailto:${profile.email}`}>{profile.email}</PillLink>
+          <MoreLink href={profile.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</MoreLink>
+          <MoreLink href={profile.cv} download>Download CV</MoreLink>
         </div>
-        <p className="font-mono text-xs text-muted mt-10">{profile.phone} · {profile.location}</p>
+        <p className="text-sm text-graphite mt-12">{profile.phone} · {profile.location}</p>
       </motion.div>
     </section>
   )

@@ -7,24 +7,14 @@ export default {
   theme: {
     extend: {
       colors: {
-        ink: '#0B0E14',
-        surface: '#12161F',
-        card: '#161B26',
-        line: '#232938',
-        muted: '#8B92A3',
-        signal: {
-          DEFAULT: '#4C8BF5',
-          dim: '#2A4571',
+        ink: '#1d1d1f',
+        snow: '#f5f5f7',
+        graphite: '#86868b', // secondary text on black
+        subtle: '#6e6e73', // secondary text on white and snow
+        accent: {
+          DEFAULT: '#2997ff', // links on black
+          strong: '#0071e3', // links on white and snow, filled buttons
         },
-        terminal: {
-          DEFAULT: '#34D399',
-          dim: '#1B5E48',
-        },
-        amber: '#F5A623',
-      },
-      fontFamily: {
-        display: ['Space Grotesk', 'sans-serif'],
-        mono: ['JetBrains Mono', 'monospace'],
       },
     },
   },
