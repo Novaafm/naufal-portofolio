@@ -216,7 +216,7 @@ export const skills = {
 
 export const education = {
   school: "Telkom University",
-  degree: "Telecommunication Engineering — Undergraduate",
+  degree: "Telecommunication Engineering",
   period: "2022 – 2026",
   notes: [
     "Member, HIPMI (Himpunan Pengusaha Muda Indonesia)",
